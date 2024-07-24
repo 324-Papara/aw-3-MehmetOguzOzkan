@@ -49,21 +49,6 @@ public class Startup
                 b => b.SchemaBehavior(MySqlSchemaBehavior.Ignore)
                       .MigrationsAssembly("Para.Api")));
 
-
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-        var config = new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile(new MapperConfig());
-        });
-        services.AddSingleton(config.CreateMapper());
-
-
-        services.AddMediatR(typeof(CreateCustomerCommand).GetTypeInfo().Assembly);
-
-        services.AddTransient<CustomService1>();
-        services.AddScoped<CustomService2>();
-        services.AddSingleton<CustomService3>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
